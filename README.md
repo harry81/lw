@@ -68,6 +68,77 @@ $ curl http://localhost:8000/stat/patient/ | jq .
 
 ```
 
+## 방문
+
+```
+$ curl http://localhost:8000/stat/visit/ | jq .
+
+{
+  "visit_type": [
+    {
+      "visit_type_concept__concept_name": "Visit derived from encounter on claim",
+      "cnt": 41810
+    }
+  ],
+  "gender": [
+    {
+      "person__gender_concept__concept_name": "FEMALE",
+      "cnt": 19307
+    },
+    {
+      "person__gender_concept__concept_name": "MALE",
+      "cnt": 22503
+    }
+  ],
+  "race": [
+    {
+      "person__race_source_value": "other",
+      "cnt": 82
+    },
+    {
+      "person__race_source_value": "native",
+      "cnt": 89
+    },
+    {
+      "person__race_source_value": "black",
+      "cnt": 3326
+    },
+    {
+      "person__race_source_value": "white",
+      "cnt": 35487
+    },
+    {
+      "person__race_source_value": "asian",
+      "cnt": 2826
+    }
+  ],
+  "ethnicity": [
+    {
+      "person__ethnicity_source_value": "nonhispanic",
+      "cnt": 36981
+    },
+    {
+      "person__ethnicity_source_value": "hispanic",
+      "cnt": 4829
+    }
+  ],
+  "age_group": {
+    "0": 3282,
+    "1": 4884,
+    "2": 5515,
+    "3": 5631,
+    "4": 5970,
+    "5": 5865,
+    "6": 4576,
+    "7": 3606,
+    "8": 1594,
+    "9": 834,
+    "10": 53
+  }
+}
+
+```
+
 # troubleshooting
 
 ## 이미 존재하는 db schema를 django models 로 인식 시키디
