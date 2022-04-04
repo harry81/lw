@@ -309,6 +309,159 @@ $ curl http://localhost:8000/person/\?search\=hispanic | jq .
 
 ```
 ### visit_occurrence
+```
+$ curl http://localhost:8000/visitoccurrence/\?search\=encounter | jq .
+
+{
+  "count": 41810,
+  "next": "http://localhost:8000/visitoccurrence/?limit=5&offset=5&search=encounter",
+  "previous": null,
+  "results": [
+    {
+      "visit_occurrence_id": 2482686,
+      "visit_concept": {
+        "concept_id": 9201,
+        "concept_name": "Inpatient Visit"
+      },
+      "visit_type_concept": {
+        "concept_id": 44818517,
+        "concept_name": "Visit derived from encounter on claim"
+      },
+      "visit_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "discharge_to_concept": null,
+      "visit_start_date": "2020-03-10",
+      "visit_start_datetime": "2020-03-10T15:53:50Z",
+      "visit_end_date": "2020-03-18",
+      "visit_end_datetime": "2020-03-18T20:40:50Z",
+      "provider_id": null,
+      "care_site_id": null,
+      "visit_source_value": "b9438697-173d-4256-96c2-fcbb0f9cdf87",
+      "admitted_from_concept_id": 0,
+      "admitted_from_source_value": null,
+      "discharge_to_source_value": "0",
+      "person": 2293584,
+      "preceding_visit_occurrence": 87633782
+    },
+    {
+      "visit_occurrence_id": 3533806,
+      "visit_concept": {
+        "concept_id": 9201,
+        "concept_name": "Inpatient Visit"
+      },
+      "visit_type_concept": {
+        "concept_id": 44818517,
+        "concept_name": "Visit derived from encounter on claim"
+      },
+      "visit_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "discharge_to_concept": null,
+      "visit_start_date": "2018-10-05",
+      "visit_start_datetime": "2018-10-05T09:45:37Z",
+      "visit_end_date": "2018-10-06",
+      "visit_end_datetime": "2018-10-06T10:45:37Z",
+      "provider_id": null,
+      "care_site_id": null,
+      "visit_source_value": "8529614a-c0af-44c4-966e-240142628f67",
+      "admitted_from_concept_id": 0,
+      "admitted_from_source_value": null,
+      "discharge_to_source_value": "0",
+      "person": 2460892,
+      "preceding_visit_occurrence": 323658
+    },
+    {
+      "visit_occurrence_id": 2657368,
+      "visit_concept": {
+        "concept_id": 9201,
+        "concept_name": "Inpatient Visit"
+      },
+      "visit_type_concept": {
+        "concept_id": 44818517,
+        "concept_name": "Visit derived from encounter on claim"
+      },
+      "visit_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "discharge_to_concept": null,
+      "visit_start_date": "2017-04-02",
+      "visit_start_datetime": "2017-04-02T10:42:34Z",
+      "visit_end_date": "2017-04-03",
+      "visit_end_datetime": "2017-04-03T11:22:34Z",
+      "provider_id": null,
+      "care_site_id": null,
+      "visit_source_value": "f2bae24d-68ad-4029-a402-eaadf5e7e463",
+      "admitted_from_concept_id": 0,
+      "admitted_from_source_value": null,
+      "discharge_to_source_value": "0",
+      "person": 2348101,
+      "preceding_visit_occurrence": 78269051
+    },
+    {
+      "visit_occurrence_id": 211175,
+      "visit_concept": {
+        "concept_id": 9201,
+        "concept_name": "Inpatient Visit"
+      },
+      "visit_type_concept": {
+        "concept_id": 44818517,
+        "concept_name": "Visit derived from encounter on claim"
+      },
+      "visit_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "discharge_to_concept": null,
+      "visit_start_date": "2017-09-06",
+      "visit_start_datetime": "2017-09-06T09:45:08Z",
+      "visit_end_date": "2017-10-04",
+      "visit_end_datetime": "2017-10-04T13:06:08Z",
+      "provider_id": null,
+      "care_site_id": null,
+      "visit_source_value": "4f6b0f2b-6d69-4e50-b902-4a8e2d244e9b",
+      "admitted_from_concept_id": 0,
+      "admitted_from_source_value": null,
+      "discharge_to_source_value": "0",
+      "person": 886110,
+      "preceding_visit_occurrence": 2411579
+    },
+    {
+      "visit_occurrence_id": 81431,
+      "visit_concept": {
+        "concept_id": 9201,
+        "concept_name": "Inpatient Visit"
+      },
+      "visit_type_concept": {
+        "concept_id": 44818517,
+        "concept_name": "Visit derived from encounter on claim"
+      },
+      "visit_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "discharge_to_concept": null,
+      "visit_start_date": "2018-01-11",
+      "visit_start_datetime": "2018-01-11T20:54:59Z",
+      "visit_end_date": "2018-01-12",
+      "visit_end_datetime": "2018-01-12T20:54:59Z",
+      "provider_id": null,
+      "care_site_id": null,
+      "visit_source_value": "8d6c5544-36b3-48c7-a02d-1ad81e769959",
+      "admitted_from_concept_id": 0,
+      "admitted_from_source_value": null,
+      "discharge_to_source_value": "0",
+      "person": 1769327,
+      "preceding_visit_occurrence": 10917709
+    }
+  ]
+}
+
+```
+
 ### condition_occurrence
 ### drug_exposure
 ### death

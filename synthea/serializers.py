@@ -1,4 +1,4 @@
-from synthea.models import Concept, Person
+from synthea.models import Concept, Person, VisitOccurrence
 from rest_framework import serializers
 
 
@@ -21,7 +21,15 @@ class PersonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Person
-        fields = ['person_id', 'gender_concept', 'race_concept', 'year_of_birth',
-                  'month_of_birth', 'day_of_birth', 'birth_datetime', 'gender_source_value', 'race_source_value',
-                  'ethnicity_source_value', 'ethnicity_source_concept_id'
-                  ]
+        fields = '__all__'
+
+
+class VisitOccurrenceSerializer(serializers.ModelSerializer):
+    visit_concept = ConceptSimpleSerializer(many=False, read_only=True)
+    visit_type_concept = ConceptSimpleSerializer(many=False, read_only=True)
+    visit_source_concept = ConceptSimpleSerializer(many=False, read_only=True)
+    discharge_to_concept = ConceptSimpleSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = VisitOccurrence
+        fields = '__all__'
