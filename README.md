@@ -53,6 +53,7 @@ $ python manage.py runserver
 ## swagger
 - http://localhost:8000/schema/
 
+<img src="https://user-images.githubusercontent.com/583932/161534103-819cc079-b512-448c-996a-4c4aafd2bbe2.png" width="70%">
 
 # 확인
 
@@ -950,6 +951,7 @@ search 파마메터로 검색 키워드를 제공할 수 있습니다
 ```
 $ python manage.py inspectdb
 ```
+<img src="https://user-images.githubusercontent.com/583932/161534381-b8caf886-3c33-4297-8e96-743340533682.png" width="70%">
 
 ## Reverse accessor는 수작업으로 처리
 ```
