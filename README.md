@@ -14,6 +14,59 @@ export DB_HOST="localhost"
 $ python manage.py runserver
 ```
 
+# 확인
+
+## 환자
+```
+$ curl http://localhost:8000/stat/patient/ | jq .
+
+{
+  "total": 1000,
+  "gender": [
+    {
+      "gender_concept__concept_name": "FEMALE",
+      "cnt": 452
+    },
+    {
+      "gender_concept__concept_name": "MALE",
+      "cnt": 548
+    }
+  ],
+  "race": [
+    {
+      "race_source_value": "other",
+      "cnt": 1
+    },
+    {
+      "race_source_value": "native",
+      "cnt": 3
+    },
+    {
+      "race_source_value": "black",
+      "cnt": 86
+    },
+    {
+      "race_source_value": "white",
+      "cnt": 845
+    },
+    {
+      "race_source_value": "asian",
+      "cnt": 65
+    }
+  ],
+  "ethnicity": [
+    {
+      "ethnicity_source_value": "nonhispanic",
+      "cnt": 880
+    },
+    {
+      "ethnicity_source_value": "hispanic",
+      "cnt": 120
+    }
+  ],
+  "death": 152
+
+```
 
 # troubleshooting
 
@@ -33,3 +86,9 @@ synthea.ConditionOccurrence.condition_source_concept: (fields.E304) Reverse acce
 synthea.ConditionOccurrence.condition_status_concept: (fields.E304) Reverse accessor for 'synthea.ConditionOccurrence.condition_status_concept' clashes with reverse accessor for 'synthea.ConditionOccurrence.condition_source_concept'.
         HINT: Add or change a related_name argument to the definition for 'synthea.ConditionOccurrence.condition_status_concept' or 'synthea.ConditionOccurrence.condition_source_concept'.
 ```
+
+
+
+# 궁금증
+
+## person.gender_concept, person.gender_source_value 이유?
