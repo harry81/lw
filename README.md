@@ -1,6 +1,9 @@
 # 설정
 
 ## DB 접속
+
+아래 환경 변수 값을 shell에 적용합니다.
+
 ```
 export DB_NAME="synthe~"
 export DB_USER="walke~"
@@ -139,9 +142,9 @@ $ curl http://localhost:8000/stat/visit/ | jq .
 
 ```
 
-# troubleshooting
+# Troubleshooting
 
-## 이미 존재하는 db schema를 django models 로 인식 시키디
+## 이미 존재하는 db schema를 django models 로 인식
 
 ```
 $ python manage.py inspectdb
@@ -162,4 +165,4 @@ synthea.ConditionOccurrence.condition_status_concept: (fields.E304) Reverse acce
 
 # 궁금증
 
-## person.gender_concept, person.gender_source_value 이유?
+- person.gender_concept, person.gender_source_value 이유?

@@ -3,11 +3,12 @@ import collections
 from django.db.models import Count, F
 from django.db.models.functions import ExtractDay
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import filters, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from synthea.models import Death, Person, VisitOccurrence
+from synthea.models import Concept, Death, Person, VisitOccurrence
+from synthea.serializers import ConceptSerializer
 
 
 class StatViewSet(viewsets.ViewSet):
@@ -44,3 +45,11 @@ class StatViewSet(viewsets.ViewSet):
             'age_group': age_group
         }
         return Response(res)
+
+
+class ConceptViewSet(viewsets.ModelViewSet):
+    queryset = Concept.objects.all()
+    serializer_class = ConceptSerializer
+
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['concept_name',]

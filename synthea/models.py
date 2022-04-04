@@ -16,16 +16,6 @@ class AlembicVersion(models.Model):
         db_table = 'alembic_version'
 
 
-class Answer(models.Model):
-    question = models.ForeignKey('Question', models.DO_NOTHING, blank=True, null=True)
-    content = models.TextField()
-    create_date = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'answer'
-
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -154,19 +144,6 @@ class Death(models.Model):
         db_table = 'death'
 
 
-class DjangoAdminLog(models.Model):
-    action_time = models.DateTimeField()
-    object_id = models.TextField(blank=True, null=True)
-    object_repr = models.CharField(max_length=200)
-    action_flag = models.SmallIntegerField()
-    change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'django_admin_log'
-
 
 class DjangoContentType(models.Model):
     app_label = models.CharField(max_length=100)
@@ -177,25 +154,6 @@ class DjangoContentType(models.Model):
         db_table = 'django_content_type'
         unique_together = (('app_label', 'model'),)
 
-
-class DjangoMigrations(models.Model):
-    app = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    applied = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
-
-
-class DjangoSession(models.Model):
-    session_key = models.CharField(primary_key=True, max_length=40)
-    session_data = models.TextField()
-    expire_date = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_session'
 
 
 class DrugExposure(models.Model):
@@ -228,33 +186,6 @@ class DrugExposure(models.Model):
         db_table = 'drug_exposure'
 
 
-class DrugPair(models.Model):
-    drug_concept_id1 = models.IntegerField(blank=True, null=True)
-    drug_concept_id2 = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'drug_pair'
-
-
-class Orders(models.Model):
-    user_id = models.CharField(max_length=256)
-    buy_count = models.IntegerField()
-    order_time = models.DateField()
-
-    class Meta:
-        managed = False
-        db_table = 'orders'
-
-
-class Orderss(models.Model):
-    user_id = models.CharField(max_length=256)
-    buy_count = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'orderss'
-
 
 class Person(models.Model):
     person_id = models.BigIntegerField(primary_key=True)
@@ -279,25 +210,6 @@ class Person(models.Model):
     class Meta:
         managed = False
         db_table = 'person'
-
-
-class Question(models.Model):
-    subject = models.CharField(max_length=200)
-    content = models.TextField()
-    create_date = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'question'
-
-
-class Users(models.Model):
-    user_id = models.CharField(max_length=100)
-    user_level = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'users'
 
 
 class VisitOccurrence(models.Model):

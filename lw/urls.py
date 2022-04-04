@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-from synthea.views import StatViewSet
+from synthea.views import StatViewSet, ConceptViewSet
 
 router = DefaultRouter()
 router.register(r'stat', StatViewSet, basename='stat')
+router.register(r'concept', ConceptViewSet, basename='concept')
 
 
 urlpatterns = [
