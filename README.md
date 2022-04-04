@@ -8,7 +8,9 @@ $ python -V
 Python 3.8.10
 
 ```
-편집기: Emacs
+Emacs: 편집기
+
+jq: json 결과를 이해하기 쉽게 배열합니다. https://stedolan.github.io/jq/download/
 
 # 설정
 
@@ -20,19 +22,18 @@ Python 3.8.10
 export DB_NAME="synthe~"
 export DB_USER="walke~"
 export DB_PW="******"
-export DB_HOST="localhost"
+export DB_HOST="yourhost"
 ```
 
 # 실행
+
 ## 패키지 설치
 
 파이썬 가상 환경 준비후 설치합니다.
 
 ```
 $ pip install -r requirements.txt
-```
 
-```
 $ python manage.py runserver
 ```
 
@@ -42,12 +43,12 @@ $ python manage.py runserver
 
 - http://localhost:8000/stat/patient/
 - http://localhost:8000/stat/visit/
-- http://localhost:8000/concept/\?search\=gender
-- http://localhost:8000/person/\?search\=hispanic
-- http://localhost:8000/visitoccurrence/\?search\=encounter
-- http://localhost:8000/conditionoccurrence/\?search\=bronch
+- http://localhost:8000/concept/
+- http://localhost:8000/person/
+- http://localhost:8000/visitoccurrence/
+- http://localhost:8000/conditionoccurrence/
 - http://localhost:8000/drugexposure/
-- http://localhost:8000/death/\?search\=match
+- http://localhost:8000/death/
 
 ## swagger
 - http://localhost:8000/schema/
@@ -185,6 +186,8 @@ $ curl http://localhost:8000/stat/visit/ | jq .
 ## exam_2
 
 *각 테이블에 사용된 concept_id들의 정보를 얻을 수 있는 API를 만듭니다.*
+
+search 파마메터로 검색 키워드를 제공할 수 있습니다
 
 ```
 $ curl http://localhost:8000/concept/\?search\=gender | jq .
@@ -936,10 +939,8 @@ $ curl http://localhost:8000/death/\?search\=match | jq .
   ]
 }
 
-
 ```
-
-
+search 파마메터로 검색 키워드를 제공할 수 있습니다
 
 
 # Troubleshooting
@@ -965,11 +966,11 @@ synthea.ConditionOccurrence.condition_status_concept: (fields.E304) Reverse acce
 
 - 같은 목적을 가진 서로 다른 두개의 컬럼이 존재합니다. 특별한 이유가 있을까요?
 
-예) person.gender_concept, person.gender_source_value 이유?
+    예) person.gender_concept, person.gender_source_value 이유?
 
-- 제안: 응답 속도를 개선
+- 응답 속도를 개선
   - 방문시 연령대(10세 단위)별 방문 수
-  
-  방문 시점의 나이를 계산하기 위해서, 환자의 생년(person.birth_datetime)과 방문일시(VisitOccurrence.visit_start_datetime)를 계산해야 했습니다. 연령대별 방문 수를 자주 계산해야 한다면 미리 계산된 값을 저장하는 것도 응답속도를 개선하기 위한 방법이 될 것 같습니다.
+
+    방문 시점의 나이를 계산하기 위해서, 환자의 생년(person.birth_datetime)과 방문일시(VisitOccurrence.visit_start_datetime)를 계산해야 했습니다. 연령대별 방문 수를 자주 계산해야 한다면 미리 계산된 값을 저장하는 것도 응답속도를 개선하기 위한 방법이 될 것 같습니다.
+    
   - 통계 대상이 되는 데이터 양이 크다면, 그리고 통계값이 어느정도 실시간성이 아니라면, 주기적으로 background(celery) 서버가 해당 계산을 하고, api 요청시 계산된 값을 반환하는 접근도 고민해 보면 좋겠습니다.
-- 
