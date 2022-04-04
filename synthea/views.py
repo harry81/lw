@@ -7,9 +7,11 @@ from rest_framework import filters, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from synthea.models import Concept, Death, Person, VisitOccurrence
-from synthea.serializers import (ConceptSerializer, PersonSerializer,
-                                 VisitOccurrenceSerializer)
+from synthea.models import (Concept, ConditionOccurrence, Death, Person,
+                            VisitOccurrence, DrugExposure)
+from synthea.serializers import (ConceptSerializer,
+                                 ConditionOccurrenceSerializer,
+                                 PersonSerializer, VisitOccurrenceSerializer, DrugExposureSerializer, DeathSerializer)
 
 
 class StatViewSet(viewsets.ViewSet):
@@ -71,3 +73,29 @@ class VisitOccurrenceViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['visit_concept__concept_name', 'visit_type_concept__concept_name',
                      'visit_source_concept__concept_name', 'discharge_to_concept__concept_name']
+
+
+class ConditionOccurrenceViewSet(viewsets.ModelViewSet):
+    queryset = ConditionOccurrence.objects.all()
+    serializer_class = ConditionOccurrenceSerializer
+
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['condition_concept__concept_name', 'condition_type_concept__concept_name',
+                     'condition_status_concept__concept_name', 'condition_source_concept__concept_name']
+
+
+class DrugExposureViewSet(viewsets.ModelViewSet):
+    queryset = DrugExposure.objects.all()
+    serializer_class = DrugExposureSerializer
+
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['drug_concept__concept_name', 'drug_type_concept__concept_name',
+                     'route_concept__concept_name', 'drug_source_concept__concept_name']
+
+
+class DeathViewSet(viewsets.ModelViewSet):
+    queryset = Death.objects.all()
+    serializer_class = DeathSerializer
+
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['cause_concept__concept_name', 'cause_source_concept__concept_name']

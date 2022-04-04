@@ -463,8 +463,442 @@ $ curl http://localhost:8000/visitoccurrence/\?search\=encounter | jq .
 ```
 
 ### condition_occurrence
+
+```
+$ curl http://localhost:8000/conditionoccurrence/\?search\=bronch | jq .
+
+{
+  "count": 506,
+  "next": "http://localhost:8000/conditionoccurrence/?limit=5&offset=5&search=bronch",
+  "previous": null,
+  "results": [
+    {
+      "condition_occurrence_id": 1466186,
+      "condition_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_type_concept": {
+        "concept_id": 32020,
+        "concept_name": "EHR encounter diagnosis"
+      },
+      "condition_source_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_start_date": "2012-10-23",
+      "condition_start_datetime": "2012-10-23T00:00:00Z",
+      "condition_end_date": "2012-10-30",
+      "condition_end_datetime": "2012-10-30T00:00:00Z",
+      "stop_reason": null,
+      "provider_id": null,
+      "visit_detail_id": 0,
+      "condition_source_value": "10509002",
+      "condition_status_source_value": null,
+      "person": 116496,
+      "condition_status_concept": 0,
+      "visit_occurrence": 36112948
+    },
+    {
+      "condition_occurrence_id": 11162525,
+      "condition_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_type_concept": {
+        "concept_id": 32020,
+        "concept_name": "EHR encounter diagnosis"
+      },
+      "condition_source_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_start_date": "2018-11-07",
+      "condition_start_datetime": "2018-11-07T00:00:00Z",
+      "condition_end_date": "2018-11-14",
+      "condition_end_datetime": "2018-11-14T00:00:00Z",
+      "stop_reason": null,
+      "provider_id": null,
+      "visit_detail_id": 0,
+      "condition_source_value": "10509002",
+      "condition_status_source_value": null,
+      "person": 886110,
+      "condition_status_concept": 0,
+      "visit_occurrence": 31254220
+    },
+    {
+      "condition_occurrence_id": 5011695,
+      "condition_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_type_concept": {
+        "concept_id": 32020,
+        "concept_name": "EHR encounter diagnosis"
+      },
+      "condition_source_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_start_date": "2014-09-25",
+      "condition_start_datetime": "2014-09-25T00:00:00Z",
+      "condition_end_date": "2014-10-09",
+      "condition_end_datetime": "2014-10-09T00:00:00Z",
+      "stop_reason": null,
+      "provider_id": null,
+      "visit_detail_id": 0,
+      "condition_source_value": "10509002",
+      "condition_status_source_value": null,
+      "person": 397813,
+      "condition_status_concept": 0,
+      "visit_occurrence": 31070540
+    },
+    {
+      "condition_occurrence_id": 20891721,
+      "condition_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_type_concept": {
+        "concept_id": 32020,
+        "concept_name": "EHR encounter diagnosis"
+      },
+      "condition_source_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_start_date": "2017-12-16",
+      "condition_start_datetime": "2017-12-16T00:00:00Z",
+      "condition_end_date": "2017-12-23",
+      "condition_end_datetime": "2017-12-23T00:00:00Z",
+      "stop_reason": null,
+      "provider_id": null,
+      "visit_detail_id": 0,
+      "condition_source_value": "10509002",
+      "condition_status_source_value": null,
+      "person": 1658282,
+      "condition_status_concept": 0,
+      "visit_occurrence": 89464894
+    },
+    {
+      "condition_occurrence_id": 4863236,
+      "condition_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_type_concept": {
+        "concept_id": 32020,
+        "concept_name": "EHR encounter diagnosis"
+      },
+      "condition_source_concept": {
+        "concept_id": 260139,
+        "concept_name": "Acute bronchitis"
+      },
+      "condition_start_date": "2019-03-22",
+      "condition_start_datetime": "2019-03-22T00:00:00Z",
+      "condition_end_date": "2019-04-05",
+      "condition_end_datetime": "2019-04-05T00:00:00Z",
+      "stop_reason": null,
+      "provider_id": null,
+      "visit_detail_id": 0,
+      "condition_source_value": "10509002",
+      "condition_status_source_value": null,
+      "person": 386051,
+      "condition_status_concept": 0,
+      "visit_occurrence": 123947029
+    }
+  ]
+}
+```
+
 ### drug_exposure
+```
+$ curl http://localhost:8000/drugexposure/ | jq .
+{
+  "count": 46579,
+  "next": "http://localhost:8000/drugexposure/?limit=5&offset=5",
+  "previous": null,
+  "results": [
+    {
+      "drug_exposure_id": 40900862,
+      "drug_concept": {
+        "concept_id": 19073183,
+        "concept_name": "amoxicillin 250 MG Oral Capsule"
+      },
+      "drug_type_concept": {
+        "concept_id": 38000177,
+        "concept_name": "Prescription written"
+      },
+      "route_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "drug_source_concept": {
+        "concept_id": 19073183,
+        "concept_name": "amoxicillin 250 MG Oral Capsule"
+      },
+      "drug_exposure_start_date": "2017-05-04",
+      "drug_exposure_start_datetime": "2017-05-04T01:41:54Z",
+      "drug_exposure_end_date": "2017-05-18",
+      "drug_exposure_end_datetime": "2017-05-18T01:41:54Z",
+      "verbatim_end_date": "2017-05-18",
+      "stop_reason": null,
+      "refills": 0,
+      "quantity": "0.0000000000",
+      "days_supply": 14,
+      "sig": null,
+      "lot_number": "0",
+      "provider_id": 0,
+      "visit_detail_id": 0,
+      "drug_source_value": "308182",
+      "route_source_value": null,
+      "dose_unit_source_value": null,
+      "person": 26922,
+      "visit_occurrence": 99499216
+    },
+    {
+      "drug_exposure_id": 40757313,
+      "drug_concept": {
+        "concept_id": 40231925,
+        "concept_name": "acetaminophen 325 MG / oxycodone hydrochloride 5 MG Oral Tablet"
+      },
+      "drug_type_concept": {
+        "concept_id": 38000177,
+        "concept_name": "Prescription written"
+      },
+      "route_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "drug_source_concept": {
+        "concept_id": 40231925,
+        "concept_name": "acetaminophen 325 MG / oxycodone hydrochloride 5 MG Oral Tablet"
+      },
+      "drug_exposure_start_date": "2016-07-24",
+      "drug_exposure_start_datetime": "2016-07-24T13:28:53Z",
+      "drug_exposure_end_date": "2016-09-23",
+      "drug_exposure_end_datetime": "2016-09-23T13:28:53Z",
+      "verbatim_end_date": "2016-09-23",
+      "stop_reason": null,
+      "refills": 0,
+      "quantity": "0.0000000000",
+      "days_supply": 61,
+      "sig": null,
+      "lot_number": "0",
+      "provider_id": 0,
+      "visit_detail_id": 0,
+      "drug_source_value": "1049221",
+      "route_source_value": null,
+      "dose_unit_source_value": null,
+      "person": 2955,
+      "visit_occurrence": 9251642
+    },
+    {
+      "drug_exposure_id": 52808614,
+      "drug_concept": {
+        "concept_id": 40229134,
+        "concept_name": "acetaminophen 21.7 MG/ML / dextromethorphan hydrobromide 1 MG/ML / doxylamine succinate 0.417 MG/ML Oral Solution"
+      },
+      "drug_type_concept": {
+        "concept_id": 38000177,
+        "concept_name": "Prescription written"
+      },
+      "route_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "drug_source_concept": {
+        "concept_id": 40229134,
+        "concept_name": "acetaminophen 21.7 MG/ML / dextromethorphan hydrobromide 1 MG/ML / doxylamine succinate 0.417 MG/ML Oral Solution"
+      },
+      "drug_exposure_start_date": "2015-04-02",
+      "drug_exposure_start_datetime": "2015-04-02T13:28:53Z",
+      "drug_exposure_end_date": "2015-04-16",
+      "drug_exposure_end_datetime": "2015-04-16T13:28:53Z",
+      "verbatim_end_date": "2015-04-16",
+      "stop_reason": null,
+      "refills": 0,
+      "quantity": "0.0000000000",
+      "days_supply": 14,
+      "sig": null,
+      "lot_number": "0",
+      "provider_id": 0,
+      "visit_detail_id": 0,
+      "drug_source_value": "1043400",
+      "route_source_value": null,
+      "dose_unit_source_value": null,
+      "person": 2955,
+      "visit_occurrence": 57618650
+    },
+    {
+      "drug_exposure_id": 52808615,
+      "drug_concept": {
+        "concept_id": 1115171,
+        "concept_name": "naproxen sodium 220 MG Oral Tablet"
+      },
+      "drug_type_concept": {
+        "concept_id": 38000177,
+        "concept_name": "Prescription written"
+      },
+      "route_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "drug_source_concept": {
+        "concept_id": 1115171,
+        "concept_name": "naproxen sodium 220 MG Oral Tablet"
+      },
+      "drug_exposure_start_date": "2016-07-24",
+      "drug_exposure_start_datetime": "2016-07-24T13:28:53Z",
+      "drug_exposure_end_date": "2016-08-23",
+      "drug_exposure_end_datetime": "2016-08-23T13:28:53Z",
+      "verbatim_end_date": "2016-08-23",
+      "stop_reason": null,
+      "refills": 0,
+      "quantity": "0.0000000000",
+      "days_supply": 30,
+      "sig": null,
+      "lot_number": "0",
+      "provider_id": 0,
+      "visit_detail_id": 0,
+      "drug_source_value": "849574",
+      "route_source_value": null,
+      "dose_unit_source_value": null,
+      "person": 2955,
+      "visit_occurrence": 9251642
+    },
+    {
+      "drug_exposure_id": 111107864,
+      "drug_concept": {
+        "concept_id": 40213154,
+        "concept_name": "Influenza, seasonal, injectable, preservative free"
+      },
+      "drug_type_concept": {
+        "concept_id": 581452,
+        "concept_name": "Dispensed in Outpatient office"
+      },
+      "route_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "drug_source_concept": {
+        "concept_id": 40213154,
+        "concept_name": "Influenza, seasonal, injectable, preservative free"
+      },
+      "drug_exposure_start_date": "2011-04-04",
+      "drug_exposure_start_datetime": "2011-04-04T13:28:53Z",
+      "drug_exposure_end_date": "2011-04-04",
+      "drug_exposure_end_datetime": "2011-04-04T13:28:53Z",
+      "verbatim_end_date": "2011-04-04",
+      "stop_reason": null,
+      "refills": 0,
+      "quantity": "0.0000000000",
+      "days_supply": 0,
+      "sig": null,
+      "lot_number": "0",
+      "provider_id": 0,
+      "visit_detail_id": 0,
+      "drug_source_value": "140",
+      "route_source_value": null,
+      "dose_unit_source_value": null,
+      "person": 2955,
+      "visit_occurrence": 57618654
+    }
+  ]
+}
+
+
+```
+
 ### death
+```
+$ curl http://localhost:8000/death/\?search\=match | jq .
+
+{
+  "count": 152,
+  "next": "http://localhost:8000/death/?limit=5&offset=5&search=match",
+  "previous": null,
+  "results": [
+    {
+      "person": 1691806,
+      "cause_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "cause_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "death_date": "2015-06-02",
+      "death_datetime": null,
+      "death_type_concept_id": 32815,
+      "cause_source_value": 233604007
+    },
+    {
+      "person": 99181,
+      "cause_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "cause_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "death_date": "2018-11-04",
+      "death_datetime": null,
+      "death_type_concept_id": 32815,
+      "cause_source_value": 87433001
+    },
+    {
+      "person": 2738610,
+      "cause_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "cause_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "death_date": "1998-03-28",
+      "death_datetime": null,
+      "death_type_concept_id": 32815,
+      "cause_source_value": 262574004
+    },
+    {
+      "person": 31196,
+      "cause_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "cause_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "death_date": "2020-03-16",
+      "death_datetime": null,
+      "death_type_concept_id": 32815,
+      "cause_source_value": 840539006
+    },
+    {
+      "person": 994339,
+      "cause_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "cause_source_concept": {
+        "concept_id": 0,
+        "concept_name": "No matching concept"
+      },
+      "death_date": "2006-03-08",
+      "death_datetime": null,
+      "death_type_concept_id": 32815,
+      "cause_source_value": 22298006
+    }
+  ]
+}
+
+
+```
 
 
 
