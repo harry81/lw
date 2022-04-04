@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
 from rest_framework.routers import DefaultRouter
+from rest_framework_swagger.views import get_swagger_view
 from synthea.views import (ConceptViewSet, ConditionOccurrenceViewSet,
                            DeathViewSet, DrugExposureViewSet, PersonViewSet,
                            StatViewSet, VisitOccurrenceViewSet)
@@ -30,8 +32,11 @@ router.register(r'drugexposure', DrugExposureViewSet, basename='drugexposure')
 router.register(r'death', DeathViewSet, basename='death')
 
 
+schema_view = get_swagger_view(title='Pastebin API')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(r'schema/', schema_view)
 ]
 
 urlpatterns += router.urls

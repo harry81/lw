@@ -1,8 +1,20 @@
+# 개발환경
+
+```
+$ uname -a
+Linux hm-xpse15 5.3.0-19-generic #20-Ubuntu SMP Fri Oct 18 09:04:39 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+
+$ python -V
+Python 3.8.10
+
+```
+편집기: Emacs
+
 # 설정
 
 ## DB 접속
 
-아래 환경 변수 값을 shell에 적용합니다.
+아래 값을 shell의 환경변수에 등록합니다.
 
 ```
 export DB_NAME="synthe~"
@@ -12,14 +24,41 @@ export DB_HOST="localhost"
 ```
 
 # 실행
+## 패키지 설치
+
+파이썬 가상 환경 준비후 설치합니다.
+
+```
+$ pip install -r requirements.txt
+```
 
 ```
 $ python manage.py runserver
 ```
 
+# 접근 가능 endpoints
+
+## 구현된 endpoints
+
+- http://localhost:8000/stat/patient/
+- http://localhost:8000/stat/visit/
+- http://localhost:8000/concept/\?search\=gender
+- http://localhost:8000/person/\?search\=hispanic
+- http://localhost:8000/visitoccurrence/\?search\=encounter
+- http://localhost:8000/conditionoccurrence/\?search\=bronch
+- http://localhost:8000/drugexposure/
+- http://localhost:8000/death/\?search\=match
+
+## swagger
+- http://localhost:8000/schema/
+
+
 # 확인
 
-## exam_1 
+## exam_1
+
+*환자와 방문 테이블들의 간단한 통계를 제공하는 API를 구현합니다.*
+
 ### 환자
 ```
 $ curl http://localhost:8000/stat/patient/ | jq .
@@ -145,7 +184,7 @@ $ curl http://localhost:8000/stat/visit/ | jq .
 
 ## exam_2
 
-### concept_id들의 정보를 얻을 수 있는 API
+*각 테이블에 사용된 concept_id들의 정보를 얻을 수 있는 API를 만듭니다.*
 
 ```
 $ curl http://localhost:8000/concept/\?search\=gender | jq .
@@ -197,7 +236,7 @@ $ curl http://localhost:8000/concept/\?search\=gender | jq .
 
 ## exam_3
 
-각 테이블의 row를 조회하는 API
+*각 테이블의 row를 조회하는 API를 구현합니다.*
 
 ### person
 
@@ -922,8 +961,15 @@ synthea.ConditionOccurrence.condition_status_concept: (fields.E304) Reverse acce
         HINT: Add or change a related_name argument to the definition for 'synthea.ConditionOccurrence.condition_status_concept' or 'synthea.ConditionOccurrence.condition_source_concept'.
 ```
 
+# 마무리
 
+- 같은 목적을 가진 서로 다른 두개의 컬럼이 존재합니다. 특별한 이유가 있을까요?
 
-# 궁금증
+예) person.gender_concept, person.gender_source_value 이유?
 
-- person.gender_concept, person.gender_source_value 이유?
+- 제안: 응답 속도를 개선
+  - 방문시 연령대(10세 단위)별 방문 수
+  
+  방문 시점의 나이를 계산하기 위해서, 환자의 생년(person.birth_datetime)과 방문일시(VisitOccurrence.visit_start_datetime)를 계산해야 했습니다. 연령대별 방문 수를 자주 계산해야 한다면 미리 계산된 값을 저장하는 것도 응답속도를 개선하기 위한 방법이 될 것 같습니다.
+  - 통계 대상이 되는 데이터 양이 크다면, 그리고 통계값이 어느정도 실시간성이 아니라면, 주기적으로 background(celery) 서버가 해당 계산을 하고, api 요청시 계산된 값을 반환하는 접근도 고민해 보면 좋겠습니다.
+- 
