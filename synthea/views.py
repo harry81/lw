@@ -8,7 +8,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from synthea.models import Concept, Death, Person, VisitOccurrence
-from synthea.serializers import ConceptSerializer
+from synthea.serializers import ConceptSerializer, PersonSerializer
 
 
 class StatViewSet(viewsets.ViewSet):
@@ -53,3 +53,11 @@ class ConceptViewSet(viewsets.ModelViewSet):
 
     filter_backends = [filters.SearchFilter]
     search_fields = ['concept_name',]
+
+
+class PersonViewSet(viewsets.ModelViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['gender_concept__concept_name', 'year_of_birth', 'ethnicity_source_value']

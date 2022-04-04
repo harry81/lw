@@ -19,7 +19,8 @@ $ python manage.py runserver
 
 # 확인
 
-## 환자
+## exam_1 
+### 환자
 ```
 $ curl http://localhost:8000/stat/patient/ | jq .
 
@@ -71,7 +72,7 @@ $ curl http://localhost:8000/stat/patient/ | jq .
 
 ```
 
-## 방문
+### 방문
 
 ```
 $ curl http://localhost:8000/stat/visit/ | jq .
@@ -141,6 +142,179 @@ $ curl http://localhost:8000/stat/visit/ | jq .
 }
 
 ```
+
+## exam_2
+
+### concept_id들의 정보를 얻을 수 있는 API
+
+```
+$ curl http://localhost:8000/concept/\?search\=gender | jq .
+
+{
+  "count": 248,
+  "next": "http://localhost:8000/concept/?limit=5&offset=5&search=gender",
+  "previous": null,
+  "results": [
+    {
+      "concept_id": 45766034,
+      "concept_name": "Masculine gender",
+      "domain_id": "Gender",
+      "vocabulary_id": "SNOMED",
+      "concept_code": "703117000"
+    },
+    {
+      "concept_id": 45766035,
+      "concept_name": "Feminine gender",
+      "domain_id": "Gender",
+      "vocabulary_id": "SNOMED",
+      "concept_code": "703118005"
+    },
+    {
+      "concept_id": 45774366,
+      "concept_name": "[V] Gender dysphoria",
+      "domain_id": "Condition",
+      "vocabulary_id": "Read",
+      "concept_code": "ZV62A00"
+    },
+    {
+      "concept_id": 45883294,
+      "concept_name": "Your gender",
+      "domain_id": "Meas Value",
+      "vocabulary_id": "LOINC",
+      "concept_code": "LA15575-6"
+    },
+    {
+      "concept_id": 45888206,
+      "concept_name": "Initial comprehensive preventive medicine evaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diagnos",
+      "domain_id": "Procedure",
+      "vocabulary_id": "CPT4",
+      "concept_code": "1013831"
+    }
+  ]
+}
+
+```
+
+## exam_3
+
+각 테이블의 row를 조회하는 API
+
+### person
+
+```
+$ curl http://localhost:8000/person/\?search\=hispanic | jq .
+
+{
+  "count": 1000,
+  "next": "http://localhost:8000/person/?limit=5&offset=5&search=hispanic",
+  "previous": null,
+  "results": [
+    {
+      "person_id": 277792,
+      "gender_concept": {
+        "concept_id": 8507,
+        "concept_name": "MALE"
+      },
+      "race_concept": {
+        "concept_id": 8527,
+        "concept_name": "White"
+      },
+      "year_of_birth": 1954,
+      "month_of_birth": 4,
+      "day_of_birth": 17,
+      "birth_datetime": "1954-04-17T00:00:00Z",
+      "gender_source_value": "M",
+      "race_source_value": "white",
+      "ethnicity_source_value": "nonhispanic",
+      "ethnicity_source_concept_id": 0
+    },
+    {
+      "person_id": 1022983,
+      "gender_concept": {
+        "concept_id": 8507,
+        "concept_name": "MALE"
+      },
+      "race_concept": {
+        "concept_id": 8527,
+        "concept_name": "White"
+      },
+      "year_of_birth": 1950,
+      "month_of_birth": 2,
+      "day_of_birth": 26,
+      "birth_datetime": "1950-02-26T00:00:00Z",
+      "gender_source_value": "M",
+      "race_source_value": "white",
+      "ethnicity_source_value": "hispanic",
+      "ethnicity_source_concept_id": 0
+    },
+    {
+      "person_id": 1786297,
+      "gender_concept": {
+        "concept_id": 8507,
+        "concept_name": "MALE"
+      },
+      "race_concept": {
+        "concept_id": 8527,
+        "concept_name": "White"
+      },
+      "year_of_birth": 1973,
+      "month_of_birth": 5,
+      "day_of_birth": 29,
+      "birth_datetime": "1973-05-29T00:00:00Z",
+      "gender_source_value": "M",
+      "race_source_value": "white",
+      "ethnicity_source_value": "nonhispanic",
+      "ethnicity_source_concept_id": 0
+    },
+    {
+      "person_id": 1771720,
+      "gender_concept": {
+        "concept_id": 8507,
+        "concept_name": "MALE"
+      },
+      "race_concept": {
+        "concept_id": 8527,
+        "concept_name": "White"
+      },
+      "year_of_birth": 2006,
+      "month_of_birth": 3,
+      "day_of_birth": 19,
+      "birth_datetime": "2006-03-19T00:00:00Z",
+      "gender_source_value": "M",
+      "race_source_value": "white",
+      "ethnicity_source_value": "nonhispanic",
+      "ethnicity_source_concept_id": 0
+    },
+    {
+      "person_id": 226994,
+      "gender_concept": {
+        "concept_id": 8507,
+        "concept_name": "MALE"
+      },
+      "race_concept": {
+        "concept_id": 8527,
+        "concept_name": "White"
+      },
+      "year_of_birth": 2001,
+      "month_of_birth": 5,
+      "day_of_birth": 30,
+      "birth_datetime": "2001-05-30T00:00:00Z",
+      "gender_source_value": "M",
+      "race_source_value": "white",
+      "ethnicity_source_value": "nonhispanic",
+      "ethnicity_source_concept_id": 0
+    }
+  ]
+}
+
+```
+### visit_occurrence
+### condition_occurrence
+### drug_exposure
+### death
+
+
+
 
 # Troubleshooting
 

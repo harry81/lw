@@ -16,79 +16,6 @@ class AlembicVersion(models.Model):
         db_table = 'alembic_version'
 
 
-class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group'
-
-
-class AuthGroupPermissions(models.Model):
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
-
-
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
-
-
-class AuthUser(models.Model):
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.BooleanField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
-    is_staff = models.BooleanField()
-    is_active = models.BooleanField()
-    date_joined = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user'
-
-
-class AuthUserGroups(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
-
-
-class AuthUserUserPermissions(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
-
-
-class ClinicalNote(models.Model):
-    note = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'clinical_note'
-
 
 class Concept(models.Model):
     concept_id = models.IntegerField(primary_key=True)
@@ -105,6 +32,31 @@ class Concept(models.Model):
     class Meta:
         managed = False
         db_table = 'concept'
+
+
+class Person(models.Model):
+    person_id = models.BigIntegerField(primary_key=True)
+    gender_concept = models.ForeignKey(Concept, models.DO_NOTHING, blank=True, null=True, related_name='person_gender_concept')
+    year_of_birth = models.IntegerField(blank=True, null=True)
+    month_of_birth = models.IntegerField(blank=True, null=True)
+    day_of_birth = models.IntegerField(blank=True, null=True)
+    birth_datetime = models.DateTimeField(blank=True, null=True)
+    race_concept = models.ForeignKey(Concept, models.DO_NOTHING, blank=True, null=True)
+    ethnicity_concept_id = models.IntegerField(blank=True, null=True)
+    location_id = models.BigIntegerField(blank=True, null=True)
+    provider_id = models.BigIntegerField(blank=True, null=True)
+    care_site_id = models.BigIntegerField(blank=True, null=True)
+    person_source_value = models.CharField(max_length=50, blank=True, null=True)
+    gender_source_value = models.CharField(max_length=50, blank=True, null=True)
+    gender_source_concept_id = models.IntegerField(blank=True, null=True)
+    race_source_value = models.CharField(max_length=50, blank=True, null=True)
+    race_source_concept_id = models.IntegerField(blank=True, null=True)
+    ethnicity_source_value = models.CharField(max_length=50, blank=True, null=True)
+    ethnicity_source_concept_id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'person'
 
 
 class ConditionOccurrence(models.Model):
@@ -144,18 +96,6 @@ class Death(models.Model):
         db_table = 'death'
 
 
-
-class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100)
-    model = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
-
-
-
 class DrugExposure(models.Model):
     drug_exposure_id = models.BigIntegerField(primary_key=True)
     person = models.ForeignKey('Person', models.DO_NOTHING, blank=True, null=True)
@@ -185,31 +125,6 @@ class DrugExposure(models.Model):
         managed = False
         db_table = 'drug_exposure'
 
-
-
-class Person(models.Model):
-    person_id = models.BigIntegerField(primary_key=True)
-    gender_concept = models.ForeignKey(Concept, models.DO_NOTHING, blank=True, null=True, related_name='person_gender_concept')
-    year_of_birth = models.IntegerField(blank=True, null=True)
-    month_of_birth = models.IntegerField(blank=True, null=True)
-    day_of_birth = models.IntegerField(blank=True, null=True)
-    birth_datetime = models.DateTimeField(blank=True, null=True)
-    race_concept = models.ForeignKey(Concept, models.DO_NOTHING, blank=True, null=True)
-    ethnicity_concept_id = models.IntegerField(blank=True, null=True)
-    location_id = models.BigIntegerField(blank=True, null=True)
-    provider_id = models.BigIntegerField(blank=True, null=True)
-    care_site_id = models.BigIntegerField(blank=True, null=True)
-    person_source_value = models.CharField(max_length=50, blank=True, null=True)
-    gender_source_value = models.CharField(max_length=50, blank=True, null=True)
-    gender_source_concept_id = models.IntegerField(blank=True, null=True)
-    race_source_value = models.CharField(max_length=50, blank=True, null=True)
-    race_source_concept_id = models.IntegerField(blank=True, null=True)
-    ethnicity_source_value = models.CharField(max_length=50, blank=True, null=True)
-    ethnicity_source_concept_id = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'person'
 
 
 class VisitOccurrence(models.Model):
